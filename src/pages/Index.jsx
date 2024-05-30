@@ -1,8 +1,11 @@
-import { Container, Text, VStack, Heading, Box, Image, Link, Divider } from "@chakra-ui/react";
+import { Container, Text, VStack, Heading, Box, Image, Link, Divider, useColorModeValue } from "@chakra-ui/react";
 
 const Index = ({ posts }) => {
+  const bg = useColorModeValue("white", "gray.800");
+  const color = useColorModeValue("black", "white");
+
   return (
-    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bg={bg} color={color}>
       <VStack spacing={4}>
         <Heading as="h1" size="2xl">Welcome to My Personal Blog</Heading>
         <Box boxSize="sm">
@@ -18,7 +21,7 @@ const Index = ({ posts }) => {
         {posts.length > 0 && (
           <VStack spacing={4} width="100%">
             {posts.map((post, index) => (
-              <Box key={index} p={5} shadow="md" borderWidth="1px" width="100%">
+              <Box key={index} p={5} shadow="md" borderWidth="1px" width="100%" bg={bg} color={color}>
                 <Heading fontSize="xl">{post.title}</Heading>
                 <Text mt={4}>{post.content}</Text>
               </Box>
