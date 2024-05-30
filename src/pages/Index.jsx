@@ -1,6 +1,6 @@
-import { Container, Text, VStack, Heading, Box, Image, Link, Divider, useColorModeValue } from "@chakra-ui/react";
+import { Container, Text, VStack, Heading, Box, Image, Link, Divider, useColorModeValue, Button } from "@chakra-ui/react";
 
-const Index = ({ posts }) => {
+const Index = ({ posts, deletePost }) => {
   const bg = useColorModeValue("white", "gray.800");
   const color = useColorModeValue("black", "white");
 
@@ -24,6 +24,7 @@ const Index = ({ posts }) => {
               <Box key={index} p={5} shadow="md" borderWidth="1px" width="100%" bg={bg} color={color}>
                 <Heading fontSize="xl">{post.title}</Heading>
                 <Text mt={4}>{post.content}</Text>
+                <Button colorScheme="red" size="sm" mt={4} onClick={() => deletePost(index)}>Delete</Button>
               </Box>
             ))}
           </VStack>
