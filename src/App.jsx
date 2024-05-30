@@ -13,6 +13,14 @@ function App() {
     setPosts([...posts, post]);
   };
 
+  const deletePost = (index) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this post?");
+    if (confirmDelete) {
+      const newPosts = posts.filter((_, i) => i !== index);
+      setPosts(newPosts);
+    }
+  };
+
   useEffect(() => {
     const savedColorMode = localStorage.getItem("chakra-ui-color-mode");
     if (savedColorMode && savedColorMode !== colorMode) {
@@ -32,7 +40,7 @@ function App() {
         <Switch isChecked={colorMode === "dark"} onChange={handleToggle} />
       </Box>
       <Routes>
-        <Route exact path="/" element={<Index posts={posts} />} />
+        <Route exact path="/" element={<Index posts={posts} deletePost={deletePost} />} />
         <Route path="/new-post" element={<NewPost addPost={addPost} />} />
       </Routes>
     </Router>
